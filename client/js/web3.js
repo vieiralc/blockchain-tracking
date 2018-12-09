@@ -71,12 +71,6 @@ function onSuccess(pos) {
     });
   }
 
-  // If user does not login and closes portis
-  web3.currentProvider.showPortis(() => {
-    if (!web3.eth.defaultAccount)
-      alert('Please login on metamask or portis in order to use this dapp');
-    location.reload();
-  });
 };
 
 function onError(err) {
