@@ -80,7 +80,7 @@ function onError(err) {
 };
 
 function registerLocation(addr, lat, lng) {
-  console.log(addr)
+  console.log(addr, lat, lng);
   // contract.methods.registerLocation(addr, lat, lng)
   //   .send({from: web3.eth.defaultAccount})
   //   .then(receipt => {
