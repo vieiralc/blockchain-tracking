@@ -39,11 +39,14 @@ function startApp() {
       web3.eth.defaultAccount = accounts[0];
     })
   
-  // Get current user's location
-  //console.log(window.mobilecheck)
-  setTimeout(() => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
-  }, 2000)
+  // detect if user is on mobile
+  var md = new MobileDetect(window.navigator.userAgent);
+  if (md.mobile()) {
+    // Get current user's location
+    setTimeout(() => {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
+    }, 2000)
+  }
 };
 
 function onSuccess(pos) {
@@ -68,9 +71,10 @@ function onSuccess(pos) {
     });
   }
 
-  // If user closes portis
+  // If user does not login and closes portis
   web3.currentProvider.showPortis(() => {
-    alert('Please login on metamask or portis in order to use this dapp');
+    if (!web3.eth.defaultAccount)
+      alert('Please login on metamask or portis in order to use this dapp');
     location.reload();
   });
 };
