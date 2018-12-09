@@ -1,59 +1,89 @@
 var contract;
 var web3;
 var portisProvider;
-var defaultAccount;
-var isLoggedIn;
 
-window.addEventListener('load', async function() {
+// GeoLocation Options
+let options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+window.addEventListener('load', function() {
   
   if (typeof web3 !== 'undefined') {
-
-    web3 = await new Web3(web3.currentProvider);
+    web3 = new Web3(web3.currentProvider);
   } else {
-    
-    // set the provider you want from Web3.providers
+    //set the provider you want from Web3.providers
     PortisProvider = window.Portis.PortisProvider;
-    web3 = await new Web3(new PortisProvider({
+    web3 = new Web3(new PortisProvider({
         apiKey: "cec8b155d40ac0f2b4a44cd70d64ad0c",
         providerNodeUrl: 'http://localhost:7545'
     }));
   }
   
-  // Agora você pode iniciar seu aplicativo e acessar o web3js livremente:
-  startApp()
-})
+  // start the dapp:
+  startApp();
+});
 
-async function startApp() {
+function startApp() {
   
   const contractAddress = "0x4977c81cf6ef51e547e953e2a2f67521e34ac298";
 
   // contractABI is at contracts/contract_abi.js
-  contract = await new web3.eth.Contract(contractABI, contractAddress);
+  contract = new web3.eth.Contract(contractABI, contractAddress);
   
-  await web3.eth.getAccounts()
+  // setting default account
+  web3.eth.getAccounts()
     .then(accounts => {
       web3.eth.defaultAccount = accounts[0];
     })
   
+  // Get current user's location
+  //console.log(window.mobilecheck)
+  setTimeout(() => {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
+  }, 2000)
+};
 
-  web3.eth.net.isListening()
-    .then(res => {
-      if (res && !web3.eth.defaultAccount)
-        isLoggedIn = true;
-      else
-        isLoggedIn = false;
-    });
+function onSuccess(pos) {
   
-  // var lat = web3.utils.asciiToHex("-15.83684779");
-  // var lng = web3.utils.asciiToHex("-47.87309647");
+  let crd = pos.coords;
+  let lat = web3.utils.asciiToHex(crd.latitude.toString());
+  let lng = web3.utils.asciiToHex(crd.longitude.toString());
 
-  // contract.methods.registerLocation(web3.eth.defaultAccount, lat, lng)
+  // Check if user is using metamask or portis
+  if (!web3.currentProvider.isPortis) {
+    // if using matamask but not logged in
+    if (!web3.eth.defaultAccount) 
+      alert('Please Login on Metamask');
+    else {
+      registerLocation(web3.eth.defaultAccount, lat, lng);
+    }
+  } else {
+    // if using portis wait for login
+    web3.currentProvider.on('login', async result => {
+      const accounts = await web3.eth.getAccounts()
+      registerLocation(web3.eth.defaultAccount, lat, lng);
+    });
+  }
+
+  // If user closes portis
+  web3.currentProvider.showPortis(() => {
+    alert('Please login on metamask or portis in order to use this dapp');
+    location.reload();
+  });
+};
+
+function onError(err) {
+  alert(`Error ${err.code}: Unable to get user location. ${err.message}`);
+};
+
+function registerLocation(addr, lat, lng) {
+  console.log(addr)
+  // contract.methods.registerLocation(addr, lat, lng)
   //   .send({from: web3.eth.defaultAccount})
   //   .then(receipt => {
   //     console.log(receipt)
   //   })
-}
-
-function registerLocations(addr, lat, lng) {
-  
 }
