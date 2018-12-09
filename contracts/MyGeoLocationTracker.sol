@@ -1,4 +1,4 @@
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 contract MyGeoLocationTracker {
     
@@ -23,12 +23,12 @@ contract MyGeoLocationTracker {
         emit newLocation(addr, lat, lng);
     }
     
-    function getUserLocations(address addr) public view returns (bytes32[], bytes32[]) {
+    function getUserLocations(address addr) public view returns (bytes32[] memory lat, bytes32[] memory lng) {
         
         require(checkUserExists(addr), "User does not exists");
         
-        bytes32[] memory lat = userObj[addr].lat;
-        bytes32[] memory lng = userObj[addr].lng;
+        lat = userObj[addr].lat;
+        lng = userObj[addr].lng;
 
         return (lat, lng);
     }
