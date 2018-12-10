@@ -10,3 +10,35 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.alert {
+    position: fixed;
+    bottom: 0;
+    left: -25px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+    margin: 5% auto auto 5%;
+    padding: 20px;
+    background-color: #d61f47c9;
+    color: white;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
