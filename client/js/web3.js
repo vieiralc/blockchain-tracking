@@ -37,24 +37,30 @@ function startApp() {
   web3.eth.getAccounts()
     .then(accounts => {
       web3.eth.defaultAccount = accounts[0];
-    })
+    });
   
+  // adds and listener for the events
+  currentLocationListener();
+
   // detect if user is on mobile
   var md = new MobileDetect(window.navigator.userAgent);
   if (md.mobile()) {
     // Get current user's location
     setTimeout(() => {
       navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
-    }, 2000)
+    }, 2000);
   }
 };
 
 function onSuccess(pos) {
   
   let crd = pos.coords;
-  let lat = web3.utils.asciiToHex(crd.latitude.toString());
-  let lng = web3.utils.asciiToHex(crd.longitude.toString());
+  // let lat = web3.utils.asciiToHex(crd.latitude.toString());
+  // let lng = web3.utils.asciiToHex(crd.longitude.toString());
 
+  let lat = web3.utils.asciiToHex("-15.84015068");
+  let lng = web3.utils.asciiToHex("-47.97437668");
+  
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
     // if using matamask but not logged in
@@ -66,7 +72,7 @@ function onSuccess(pos) {
   } else {
     // if using portis wait for login
     web3.currentProvider.on('login', async result => {
-      const accounts = await web3.eth.getAccounts()
+      const accounts = await web3.eth.getAccounts();
       registerLocation(web3.eth.defaultAccount, lat, lng);
     });
   }
@@ -77,10 +83,58 @@ function onError(err) {
   alert(`Error ${err.code}: Unable to get user location. ${err.message}`);
 };
 
+// Contract registerLocation
 function registerLocation(addr, lat, lng) {
   contract.methods.registerLocation(addr, lat, lng)
     .send({from: web3.eth.defaultAccount})
     .then(receipt => {
-      console.log(receipt)
+      console.log(receipt);
     })
+}
+
+// Contract Listener
+function currentLocationListener() {
+  contract.events.newLocation({ fromBlock: 'latest' })
+    .on('data', event => {
+      let lat = parseFloat(web3.utils.toAscii(event.returnValues.lat));
+      let lng = parseFloat(web3.utils.toAscii(event.returnValues.lng));
+      let positionLatLng = new google.maps.LatLng(lat, lng);
+      plotPosition(positionLatLng);
+      checkAllowedArea(positionLatLng);
+    })
+    .on('error', console.error)
+}
+
+// Plot current users position
+function plotPosition(positionLatLng) {
+  var contentString = `
+    <span> Current user location </span>
+  `;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: positionLatLng,
+    title: 'Current Location',
+    map: map,
+    draggable: false
+  });
+
+  marker.addListener('click', () => {
+    infowindow.open(map, marker);
+  });
+}
+
+// Check if user is at an allowed area
+function checkAllowedArea(positionLatLng) {
+  let isUserInNotAllowedArea;
+  
+  bounds.forEach(bound => {
+    if (bound.contains(positionLatLng))
+      isUserInNotAllowedArea = true;
+  })
+  
+  // TODO: Use Jquery to render message 
 }
