@@ -18,7 +18,8 @@ window.addEventListener('load', function() {
     PortisProvider = window.Portis.PortisProvider;
     web3 = new Web3(new PortisProvider({
         apiKey: "cec8b155d40ac0f2b4a44cd70d64ad0c",
-        network: 'ropsten'
+        network: 'ropsten',
+        project_id: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlQWNjb3VudCI6dHJ1ZSwiaWQiOiI0Zjg2ZDkyNS1iZDE4LTRhZWItYjRhYi0zNGM3NTU0ZDQzNzMiLCJwZXJtaXNzaW9ucyI6WyJTRVJWSUNFX0FDQ09VTlQiXSwiaWF0IjoxNTQ0NDQ1MDk5fQ.4QkRsW_Vu8N7NCjp_IACP-mcmZoMEDjLRUByNkh8cYA'
     }));
   }
   
