@@ -55,11 +55,8 @@ function startApp() {
 function onSuccess(pos) {
   
   let crd = pos.coords;
-  // let lat = web3.utils.asciiToHex(crd.latitude.toString());
-  // let lng = web3.utils.asciiToHex(crd.longitude.toString());
-
-  let lat = web3.utils.asciiToHex("-15.84015068");
-  let lng = web3.utils.asciiToHex("-47.97437668");
+  let lat = web3.utils.asciiToHex(crd.latitude.toString());
+  let lng = web3.utils.asciiToHex(crd.longitude.toString());
   
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
