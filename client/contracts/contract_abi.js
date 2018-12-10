@@ -1,22 +1,14 @@
 const contractABI =  [
   {
-    "constant": true,
     "inputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "users",
-    "outputs": [
-      {
-        "name": "",
+        "name": "_myGeoLocationStorage",
         "type": "address"
       }
     ],
     "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
     "anonymous": false,
@@ -44,10 +36,6 @@ const contractABI =  [
     "constant": false,
     "inputs": [
       {
-        "name": "addr",
-        "type": "address"
-      },
-      {
         "name": "lat",
         "type": "bytes32"
       },
@@ -64,12 +52,7 @@ const contractABI =  [
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "addr",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "getUserLocations",
     "outputs": [
       {
