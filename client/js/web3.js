@@ -28,7 +28,7 @@ window.addEventListener('load', function() {
 
 function startApp() {
   
-  const contractAddress = "0x4977c81cf6ef51e547e953e2a2f67521e34ac298";
+  const contractAddress = "0xB386d866Df58ADe84E0A2aF87e7170d237b900e1";
 
   // contractABI is at contracts/contract_abi.js
   contract = new web3.eth.Contract(contractABI, contractAddress);
