@@ -33,14 +33,14 @@
         toggleClass(menuLink, active);
     }
 
-    // menuLink.onclick = function (e) {
-    //     toggleAll(e);
-    // };
+    menuLink.onclick = function (e) {
+        toggleAll(e);
+    };
 
-    // content.onclick = function(e) {
-    //     if (menu.className.indexOf('active') !== -1) {
-    //         toggleAll(e);
-    //     }
-    // };
+    content.onclick = function(e) {
+        if (menu.className.indexOf('active') !== -1) {
+            toggleAll(e);
+        }
+    };
 
 }(this, this.document));
