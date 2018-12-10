@@ -19,7 +19,6 @@ window.addEventListener('load', function() {
     web3 = new Web3(new PortisProvider({
         apiKey: "cec8b155d40ac0f2b4a44cd70d64ad0c",
         network: 'ropsten',
-        project_id: '66b71767-0c15-465c-ad7c-b796769c0ee0'
     }));
   }
   
@@ -58,7 +57,7 @@ function onSuccess(pos) {
   let crd = pos.coords;
   let lat = web3.utils.asciiToHex(crd.latitude.toString());
   let lng = web3.utils.asciiToHex(crd.longitude.toString());
-  
+
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
     // if using matamask but not logged in
@@ -124,6 +123,7 @@ function plotPosition(positionLatLng) {
   marker.addListener('click', () => {
     infowindow.open(map, marker);
   });
+
 }
 
 // Check if user is at an allowed area
@@ -134,6 +134,12 @@ function checkAllowedArea(positionLatLng) {
     if (bound.contains(positionLatLng))
       isUserInNotAllowedArea = true;
   })
+
+  if (isUserInNotAllowedArea) {
+    $('#myAlert').removeClass("invisible");
+    setTimeout(() => {
+      $('#myAlert').addClass("invisible");
+    }, 4000)
+  }
   
-  // TODO: Use Jquery to render message 
 }
