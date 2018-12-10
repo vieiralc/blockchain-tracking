@@ -31,6 +31,7 @@ async function startApp() {
             web3.eth.defaultAccount = accounts[0];
         });
     
+    // Plot user places history
     contract.methods.getUserLocations(web3.eth.defaultAccount)
         .call({from: web3.eth.defaultAccount})
         .then(res => {
@@ -43,7 +44,6 @@ async function startApp() {
         })
 }
 
-// Plot current users position
 function plotPosition(positionLatLng) {
     var contentString = `
       <span> User was here </span>
