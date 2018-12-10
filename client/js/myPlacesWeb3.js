@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
 });
 
 async function startApp() {
-    const contractAddress = "0xB386d866Df58ADe84E0A2aF87e7170d237b900e1";
+    const contractAddress = "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f";
 
     // contractABI is at contracts/contract_abi.js
     contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -32,7 +32,7 @@ async function startApp() {
         });
     
     // Plot user places history
-    contract.methods.getUserLocations(web3.eth.defaultAccount)
+    contract.methods.getUserLocations()
         .call({from: web3.eth.defaultAccount})
         .then(res => {
             for (var i = 0; i < res.lat.length; i++) {

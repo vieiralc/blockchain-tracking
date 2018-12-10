@@ -28,7 +28,7 @@ window.addEventListener('load', function() {
 
 function startApp() {
   
-  const contractAddress = "0xB386d866Df58ADe84E0A2aF87e7170d237b900e1";
+  const contractAddress = "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f";
 
   // contractABI is at contracts/contract_abi.js
   contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -82,7 +82,7 @@ function onError(err) {
 
 // Contract registerLocation
 function registerLocation(addr, lat, lng) {
-  contract.methods.registerLocation(addr, lat, lng)
+  contract.methods.registerLocation(lat, lng)
     .send({from: addr})
     .then(receipt => {
       console.log(receipt);
