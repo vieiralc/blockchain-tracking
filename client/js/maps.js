@@ -1,25 +1,26 @@
 
 var citymap = {
     lagoSul: {
-        center: {lat: -15.83684779, lng: -47.87309647},
+        center: {lat: -15.83684779, lng: -47.87309647, radius: 500},
     },
     guara: {
-        center: {lat: -15.84015068, lng: -47.97437668},
+        center: {lat: -15.84015068, lng: -47.97437668, radius: 500},
     },
     asaNorte: {
-        center: {lat: -15.76251863, lng: -47.88236618},
+        center: {lat: -15.76251863, lng: -47.88236618, radius: 500},
     },
     lagoNorte: {
-        center: {lat: -15.7512843, lng: -47.8404808},
+        center: {lat: -15.7512843, lng: -47.8404808, radius: 500},
     }
 };
 
 var map;
+var bounds = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -15.82132351, lng: -47.92991638},
-        zoom: 12,
+        zoom: 11.8,
         mapTypeId: 'roadmap'
     });
 
@@ -32,7 +33,9 @@ function initMap() {
             fillOpacity: 0.35,
             map: map,
             center: citymap[city].center,
-            radius: Math.sqrt(50) * 100
+            radius: citymap[city].center.radius
         });
+
+        bounds.push(cityCircle.getBounds())
     }
 }
