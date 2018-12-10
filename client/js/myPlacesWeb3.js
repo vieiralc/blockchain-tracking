@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
     //set the provider you want from Web3.providers
     PortisProvider = window.Portis.PortisProvider;
     web3 = new Web3(new PortisProvider({
-        apiKey: cec8b155d40ac0f2b4a44cd70d64ad0c,
+        apiKey: "cec8b155d40ac0f2b4a44cd70d64ad0c",
         network: 'ropsten',
     }));
   }
