@@ -69,8 +69,8 @@ function onSuccess(pos) {
     }
   } else {
     // if using portis wait for login
-    web3.currentProvider.on('login', async result => {
-      const accounts = await web3.eth.getAccounts();
+    web3.currentProvider.on('login', result => {
+      const accounts = web3.eth.getAccounts();
       registerLocation(web3.eth.defaultAccount, lat, lng);
     });
   }
