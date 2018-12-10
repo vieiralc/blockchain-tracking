@@ -70,8 +70,7 @@ function onSuccess(pos) {
     // if using portis wait for login
     web3.currentProvider.on('login', async result => {
       const accounts = await web3.eth.getAccounts();
-      console.log('logged in', web3.eth.defaultAccount, lat, lng);
-      registerLocation(web3.eth.defaultAccount, lat, lng);
+      registerLocation(accounts[0], lat, lng);
     });
   }
 
@@ -84,7 +83,7 @@ function onError(err) {
 // Contract registerLocation
 function registerLocation(addr, lat, lng) {
   contract.methods.registerLocation(addr, lat, lng)
-    .send({from: web3.eth.defaultAccount})
+    .send({from: addr})
     .then(receipt => {
       console.log(receipt);
     })
