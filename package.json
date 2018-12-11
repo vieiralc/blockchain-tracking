@@ -1,0 +1,26 @@
+{
+  "name": "blockchain-tracking",
+  "version": "1.0.0",
+  "description": "Visited places history:",
+  "main": "truffle-config.js",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "truffle-hdwallet-provider": "^0.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "truffle test",
+    "start":"node.exe client/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drr00t/blockchain-tracking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drr00t/blockchain-tracking/issues"
+  },
+  "homepage": "https://github.com/drr00t/blockchain-tracking#readme"
+}
