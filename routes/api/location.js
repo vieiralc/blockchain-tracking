@@ -7,3 +7,5 @@ const router = express.Router()
 router.post('/register', (req, res) => {
     console.log(req)
 })
+
+module.exports = router
