@@ -11,6 +11,9 @@ var citymap = {
     },
     lagoNorte: {
         center: {lat: -15.7512843, lng: -47.8404808, radius: 500},
+    },
+    cityparkCorporate: {
+        center: {lat: -15.79529909, lng: -47.8946346, radius: 500},
     }
 };
 
