@@ -5,6 +5,7 @@
   "main": "truffle-config.js",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
     "truffle-hdwallet-provider": "^0.0.6"
   },
