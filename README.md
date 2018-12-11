@@ -13,3 +13,9 @@ npm install .
 npm start
 
 To acess go to: http://localhost:3000
+
+-> User must have a metamask account
+-> Access localhost
+-> Metamask will prompt to confirm the transaction
+-> Click Confirm
+-> Check visited places on MyPlaces (link on sidebar)
