@@ -14,8 +14,17 @@ npm start
 
 To acess go to: http://localhost:3000
 
+-> git clone https://github.com/vieiralc/blockchain-tracking/
+-> install ganache (https://truffleframework.com/ganache)
+-> cd blockchain-tracking
+-> truffle migrate --reset --network development
+
 -> User must have a metamask account
 -> Access localhost
 -> Metamask will prompt to confirm the transaction
 -> Click Confirm
 -> Check visited places on MyPlaces (link on sidebar)
+
+To deploy to ropsten:
+-> get infura api key
+-> get a mnemonic
