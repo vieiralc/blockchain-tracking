@@ -39,7 +39,7 @@ function startApp() {
       web3.eth.defaultAccount = accounts[0];
     });
   
-  // adds and listener for the events
+  // adds a listener for the events
   currentLocationListener();
 
   // detect if user is on mobile
