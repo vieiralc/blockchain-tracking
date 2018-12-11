@@ -11,7 +11,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "truffle test",
-    "start":"node.exe client/app.js"
+    "start": "node.exe client/app.js"
   },
   "repository": {
     "type": "git",
