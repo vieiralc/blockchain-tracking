@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 var contract;
 var web3;
 var portisProvider;
@@ -61,7 +59,10 @@ function onSuccess(pos) {
   let lat = web3.utils.asciiToHex(crd.latitude.toString());
   let lng = web3.utils.asciiToHex(crd.longitude.toString());
   let data = {lat, lng};
-  
+  axios.post('http://localhost:3000/api/register', data)
+    .then(res => {
+      console.log(res)
+    })
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
     // if using matamask but not logged in
