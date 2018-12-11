@@ -18,7 +18,8 @@ window.addEventListener('load', function() {
     PortisProvider = window.Portis.PortisProvider;
     web3 = new Web3(new PortisProvider({
         apiKey: "cec8b155d40ac0f2b4a44cd70d64ad0c",
-        network: 'ropsten',
+        //network: 'ropsten',
+        providerNodeUrl: 'http://localhost:7545' // only on localhost
     }));
   }
   
