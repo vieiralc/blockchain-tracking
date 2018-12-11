@@ -4,6 +4,8 @@
   "description": "Visited places history:",
   "main": "truffle-config.js",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
