@@ -1,4 +1,5 @@
 require('dotenv-safe').config()
+const express = require('express')
 const path = require('path')
 const app = express()
 
@@ -10,4 +11,8 @@ app.get('/', (req, res) => {
     res.render('index.html')
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/myplaces', (req, res) => {
+    res.render('myPlaces.html')
+})
+
+app.listen(port, () => console.log(`Blockchain Tracking App on port ${port}!`))
