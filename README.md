@@ -28,3 +28,5 @@ To acess go to: http://localhost:3000
 To deploy to ropsten:
 -> get infura api key
 -> get a mnemonic
+
+PORT=3000 PORTIS_API=weouiwrwer node client/app.js
