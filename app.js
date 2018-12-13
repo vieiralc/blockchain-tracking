@@ -5,14 +5,13 @@ require('dotenv').config({
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const port = process.env.PORT;
 
 const location = require("./routes/api/location");
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/client/public')));
-app.set('views', './client/views');
+app.set('views', path.join(__dirname, '/client/views'));
 app.set('view engine', 'pug');
 
 // Body parser middleware
@@ -24,9 +23,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/myplaces', (req, res) => {
-    res.render('myPlaces.html')
+    res.render('./routes/myplaces');
 })
 
 app.use("api/location", location);
 
-app.listen(port, () => console.log(`Blockchain Tracking App on port ${port}!`))
+app.listen(process.env.PORT, () => console.log(`Blockchain Tracking App on port ${process.env.PORT}!`));
