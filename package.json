@@ -9,12 +9,15 @@
     "dotenv": "^6.2.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
+    "pug": "^2.0.3",
     "truffle-hdwallet-provider": "^0.0.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.8"
+  },
   "scripts": {
     "test": "truffle test",
-    "start": "node.exe client/app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
