@@ -9,34 +9,23 @@ html(lang='pt-br')
         script(src="https://cdn.jsdelivr.net/npm/portis/dist/bundle.min.js" language="javascript", type="text/javascript")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js", language="javascript", type="text/javascript")
         script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js", language="javascript", type="text/javascript", integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=", crossorigin="anonymous")
+        
+        // css
+        link(href="https://unpkg.com/purecss@1.0.0/build/pure-min.css", rel="stylesheet", integrity="sha384-", crossorigin="anonymous")
+        link(href="/css/layouts/side-menu.css", rel="stylesheet") 
+        link(href="/css/style.css", rel="stylesheet")
+    body
+        include partials/navbar
+
+        include partials/map
+
+        div#myAlert.alert.invisible
+            strong Danger! Restricted Area
+            
+        // navbar js
+        script(src="js/ui.js", language="javascript", type="text/javascript")
 
         // my scripts
         script(src="/js/web3.min.js", language="javascript", type="text/javascript")
         script(src="/contracts/contract_abi.js", language="javascript", type="text/javascript")
-
-        // my css
-        link(href="/css/style.css", rel="stylesheet")
-
-        // css
-        link(href="https://unpkg.com/purecss@1.0.0/build/pure-min.css", rel="stylesheet", integrity="sha384-", crossorigin="anonymous")
-        link(href="/css/layouts/side-menu.css", rel="stylesheet")  
-    body
-        div#layout
-            a#menuLink.menu-link(href="/index.pug#menu")
-                span
-            div#menu
-                div.pure-menu
-                    a.pure-menu-heading(href="/") Company
-                    ul.pure-menu-list
-                        li.pure-menu-item
-                            a.pure-menu-link(href="/index.pug") Home
-                        li.pure-menu-item
-                            a.pure-menu-link(href="/myPlaces.pug") My Places
-                        li.pure-menu-item
-                            a.pure-menu-link(href="/") Account
-                        li.pure-menu-item
-                            a.pure-menu-link(href="/") Services
-                        li.pure-menu-item
-                            a.pure-menu-link(href="/") Contact
-
-        script(src="js/ui.js", language="javascript", type="text/javascript")
+        script(src="/js/initweb3.js", language="javascript", type="text/javascript")
