@@ -1,6 +1,6 @@
 ### Blockchain Tracking System
 
-<p>The app gets asset/user/etc location and save a visited places history. It also alerts when asset arrives in a restricted/or other area. </p>
+<p>The app saves asset/user/etc location. It also alerts when asset arrives in a restricted/or other area. </p>
 
 <div style="text-align: center;"><img src="https://github.com/vieiralc/blockchain-tracking/blob/master/img/capture.JPG" alt="capture"/></div>
 
