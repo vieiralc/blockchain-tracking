@@ -40,14 +40,14 @@ async function startApp() {
                 let lat = parseFloat(web3.utils.toAscii(res.lat[i]));
                 let lng = parseFloat(web3.utils.toAscii(res.lng[i]));
                 let positionLatLng = new google.maps.LatLng(lat, lng);
-                plotPosition(positionLatLng);
+                plotPosition(positionLatLng, web3.eth.defaultAccount);
             }
         })
 }
 
-function plotPosition(positionLatLng) {
+function plotPosition(positionLatLng, defaultAccount) {
     var contentString = `
-      <span> User was here </span>
+      <span> User ${defaultAccount.substring(0,5)} was here </span>
     `;
   
     var infowindow = new google.maps.InfoWindow({
