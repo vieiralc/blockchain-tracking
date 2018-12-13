@@ -44,13 +44,13 @@ function startApp() {
   currentLocationListener();
 
   // detect if user is on mobile
-  var md = new MobileDetect(window.navigator.userAgent);
-  if (md.mobile()) {
+  //var md = new MobileDetect(window.navigator.userAgent);
+  //if (md.mobile()) {
     // Get current user's location
     setTimeout(() => {
       navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
     }, 2000);
-  }
+  //}
 };
 
 function onSuccess(pos) {
@@ -58,11 +58,7 @@ function onSuccess(pos) {
   let crd = pos.coords;
   let lat = web3.utils.asciiToHex(crd.latitude.toString());
   let lng = web3.utils.asciiToHex(crd.longitude.toString());
-  let data = {lat, lng};
-  // axios.post('http://localhost:3000/api/register', data)
-  //   .then(res => {
-  //     console.log(res)
-  //   })
+  
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
     // if using matamask but not logged in
