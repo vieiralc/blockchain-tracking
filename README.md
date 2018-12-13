@@ -2,7 +2,7 @@
 
 <p>The app gets asset/user/etc location and save a visited places history. It also alerts when asset arrives in a restricted/or other area. </p>
 
-<div style="text-align: center"><img src="https://github.com/vieiralc/blockchain-tracking/blob/master/img/capture.JPG" alt="capture"/></div>
+<div style="text-align: center;"><img src="https://github.com/vieiralc/blockchain-tracking/blob/master/img/capture.JPG" alt="capture"/></div>
 
 ### Instructions to run the Dapp
 
