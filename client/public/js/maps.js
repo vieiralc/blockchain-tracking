@@ -23,7 +23,7 @@ var bounds = [];
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -15.78729805, lng: -47.87223816},
-        zoom: 12.3,
+        zoom: 13,
         mapTypeId: 'roadmap'
     });
 
