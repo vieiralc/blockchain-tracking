@@ -6,12 +6,16 @@
 
 ### Instructions to run the Dapp
 
-#### Requirements
+#### Requirements:
 
 <ul>
   <li> Ganache (https://truffleframework.com/ganache) </li>
   <li> Node & Npm </li>
-  <li> MetaMask (optional - https://metamask.io) </li>
+</ul>
+
+#### Optional:
+<ul>
+  <li> MetaMask (https://metamask.io) </li>
 </ul>
 
 ###### Deploy the Smart Contract to Ganache Local Blockchain
