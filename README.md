@@ -6,28 +6,33 @@
 
 ### Instructions to run the Dapp
 
-To update the smart contract logic:
-`truffle migrate -f 3`
+#### Requirements
 
-Install deps:
+<ul>
+  <li> Ganache (https://truffleframework.com/ganache) </li>
+  <li> Node & Npm </li>
+  <li> MetaMask (optional - https://metamask.io) </li>
+</ul>
 
+###### Deploy the Smart Contract to Ganache Local Blockchain
+
+```
+ run Ganache
+ truffle migrate --reset --network development (to deploy to local test blockchain)
+ truffle migrate --reset --network ropsten (to deploy to ropsten)
+```
+
+###### Install deps:
+
+```
 cd blockchain-tracking
 npm install .
 npm start
+```
 
-To acess go to: http://localhost:3000
+To acess go to: http://localhost:5000
 
--> git clone https://github.com/vieiralc/blockchain-tracking/
--> install ganache (https://truffleframework.com/ganache)
--> cd blockchain-tracking
--> truffle migrate --reset --network development
-
--> User must have a metamask account
--> Access localhost
--> Metamask will prompt to confirm the transaction
--> Click Confirm
--> Check visited places on MyPlaces (link on sidebar)
-
-To deploy to ropsten:
--> get infura api key
--> get a mnemonic
+###### To update the smart contract:
+<p>Change its logic and then run:</p>
+ 
+ `truffle migrate -f 3`
