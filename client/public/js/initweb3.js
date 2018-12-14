@@ -45,17 +45,24 @@ function startApp() {
   //var md = new MobileDetect(window.navigator.userAgent);
   //if (md.mobile()) {
     // Get current user's location
-    setTimeout(() => {
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
-    }, 2000);
+    //setTimeout(() => {
+      if (!localStorage.getItem('AlreadyGotLocation')) {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, options);   
+      } else {
+        let crd = getLocalStorageCrds();
+        let positionLatLng = new google.maps.LatLng(crd.lat, crd.lng);
+        plotPosition(positionLatLng);
+      }
+    //}, 2000);
   //}
-};
+}
 
 function onSuccess(pos) {
   
   let crd = pos.coords;
-  let lat = web3.utils.asciiToHex(crd.latitude.toString());
-  let lng = web3.utils.asciiToHex(crd.longitude.toString());
+  let data = {};
+  data.lat = web3.utils.asciiToHex(crd.latitude.toString());
+  data.lng = web3.utils.asciiToHex(crd.longitude.toString());
   
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
@@ -63,29 +70,29 @@ function onSuccess(pos) {
     if (!web3.eth.defaultAccount) 
       alert('Please Login on Metamask');
     else {
-      registerLocation(web3.eth.defaultAccount, lat, lng);
+      registerLocation(web3.eth.defaultAccount, data);
     }
   } else {
     // if using portis wait for login
     web3.currentProvider.on('login', async result => {
       const accounts = await web3.eth.getAccounts();
-      registerLocation(accounts[0], lat, lng);
+      registerLocation(accounts[0], data);
     });
   }
 
-};
+}
 
 function onError(err) {
   alert(`Error ${err.code}: Unable to get user location. ${err.message}`);
-};
+}
 
 // Contract registerLocation
-function registerLocation(addr, lat, lng) {
-  contract.methods.registerLocation(lat, lng)
+function registerLocation(addr, data) {
+  contract.methods.registerLocation(data.lat, data.lng)
     .send({from: addr})
     .then(receipt => {
-      console.log(receipt);
-    })
+      saveToLocalStorage(data);
+    });
 }
 
 // Contract Listener
@@ -140,4 +147,23 @@ function checkAllowedArea(positionLatLng) {
     }, 4000)
   }
   
+}
+
+function saveToLocalStorage(data) {
+  let saveData = {};
+  saveData.obj = data;
+  saveData.time = new Date().getTime();
+  localStorage.setItem('AlreadyGotLocation', JSON.stringify(saveData));
+}
+
+function getLocalStorageCrds() {
+  let data = JSON.parse(localStorage.getItem('AlreadyGotLocation'));
+  let lat = web3.utils.toAscii(data.obj.lat);
+  let lng = web3.utils.toAscii(data.obj.lng);
+  let json = {
+    lat: lat,
+    lng: lng
+  }
+  
+  return json;
 }
