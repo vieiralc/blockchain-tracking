@@ -18,6 +18,8 @@
   <li> MetaMask (https://metamask.io) </li>
 </ul>
 
+<p> If you're using Ganache you must be logged in on the correct chain (localhost:7545 or other) </p>
+
 ###### Deploy the Smart Contract to Ganache Local Blockchain
 
 ```
