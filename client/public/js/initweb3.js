@@ -30,6 +30,7 @@ window.addEventListener('load', function() {
 function startApp() {
   
   // scAddress is at contracts/contract_abi.js
+  // contractABI is at contracts/contract_abi.js
   contract = new web3.eth.Contract(contractABI, scAddress);
   
   // setting default account
@@ -63,7 +64,10 @@ function onSuccess(pos) {
   let data = {};
   data.lat = web3.utils.asciiToHex(crd.latitude.toString());
   data.lng = web3.utils.asciiToHex(crd.longitude.toString());
-  
+  // data.lat = web3.utils.asciiToHex("-15.797405");
+  // data.lng = web3.utils.asciiToHex("-47.849442");
+  data.date = web3.utils.asciiToHex(new Date().getTime());
+
   // Check if user is using metamask or portis
   if (!web3.currentProvider.isPortis) {
     // if using matamask but not logged in
@@ -88,7 +92,7 @@ function onError(err) {
 
 // Contract registerLocation
 function registerLocation(addr, data) {
-  contract.methods.registerLocation(data.lat, data.lng)
+  contract.methods.registerLocation(data.lat, data.lng, data.date)
     .send({from: addr})
     .then(receipt => {
       saveToLocalStorage(data);
@@ -152,7 +156,6 @@ function checkAllowedArea(positionLatLng) {
 function saveToLocalStorage(data) {
   let saveData = {};
   saveData.obj = data;
-  saveData.time = new Date().getTime();
   localStorage.setItem('AlreadyGotLocation', JSON.stringify(saveData));
 }
 

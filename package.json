@@ -2,14 +2,16 @@
   "name": "blockchain-tracking",
   "version": "1.0.0",
   "description": "Visited places history:",
-  "main": "truffle-config.js",
+  "main": "app.js",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
+    "ganache-cli": "^6.2.5",
     "pug": "^2.0.3",
+    "truffle": "^5.0.2",
     "truffle-hdwallet-provider": "^0.0.6"
   },
   "devDependencies": {

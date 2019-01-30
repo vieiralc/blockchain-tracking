@@ -26,6 +26,6 @@ app.get('/myplaces', (req, res) => {
     res.render('./routes/myplaces');
 })
 
-app.use("api/location", location);
+app.use("/api/location", location);
 
 app.listen(process.env.PORT, () => console.log(`Blockchain Tracking App on port ${process.env.PORT}!`));

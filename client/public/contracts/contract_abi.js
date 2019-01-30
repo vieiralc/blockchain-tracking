@@ -1,4 +1,4 @@
-const scAddress = "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f";
+const scAddress = "0x8f0483125FCb9aaAEFA9209D8E9d7b9C8B9Fb90F";
 const contractABI =  [
   {
     "inputs": [
@@ -9,7 +9,8 @@ const contractABI =  [
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "constructor"
+    "type": "constructor",
+    "signature": "constructor"
   },
   {
     "anonymous": false,
@@ -28,10 +29,16 @@ const contractABI =  [
         "indexed": false,
         "name": "lng",
         "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "date",
+        "type": "bytes32"
       }
     ],
     "name": "newLocation",
-    "type": "event"
+    "type": "event",
+    "signature": "0x7d0d8b0dd1434860bc2baf6a3570552defc6b764c640cedf03a3ec1a29692cd7"
   },
   {
     "constant": false,
@@ -43,13 +50,18 @@ const contractABI =  [
       {
         "name": "lng",
         "type": "bytes32"
+      },
+      {
+        "name": "date",
+        "type": "bytes32"
       }
     ],
     "name": "registerLocation",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
+    "type": "function",
+    "signature": "0xd5dc8d05"
   },
   {
     "constant": true,
@@ -63,11 +75,16 @@ const contractABI =  [
       {
         "name": "lng",
         "type": "bytes32[]"
+      },
+      {
+        "name": "date",
+        "type": "bytes32[]"
       }
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x3a53cdc4"
   },
   {
     "constant": true,
@@ -86,6 +103,7 @@ const contractABI =  [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
+    "type": "function",
+    "signature": "0x133f50f5"
   }
 ]

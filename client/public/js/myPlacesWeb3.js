@@ -20,29 +20,29 @@ window.addEventListener('load', function() {
   startApp();
 });
 
-async function startApp() {
-    const contractAddress = "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f";
+function startApp() {
 
-    // contractABI is at contracts/contract_abi.js
-    contract = new web3.eth.Contract(contractABI, contractAddress);
+  // scAddress is at contracts/contract_abi.js
+  // contractABI is at contracts/contract_abi.js
+  contract = new web3.eth.Contract(contractABI, scAddress);
 
-    // setting default account
-    await web3.eth.getAccounts()
-        .then(accounts => {
-            web3.eth.defaultAccount = accounts[0];
-        });
-    
-    // Plot user places history
-    contract.methods.getUserLocations()
-        .call({from: web3.eth.defaultAccount})
-        .then(res => {
-            for (var i = 0; i < res.lat.length; i++) {
-                let lat = parseFloat(web3.utils.toAscii(res.lat[i]));
-                let lng = parseFloat(web3.utils.toAscii(res.lng[i]));
-                let positionLatLng = new google.maps.LatLng(lat, lng);
-                plotPosition(positionLatLng, web3.eth.defaultAccount);
-            }
-        })
+  // setting default account
+  web3.eth.getAccounts()
+    .then(accounts => {
+        web3.eth.defaultAccount = accounts[0];
+    });
+
+  // Plot user places history
+  contract.methods.getUserLocations()
+    .call({from: web3.eth.defaultAccount})
+    .then(res => {
+      for (var i = 0; i < res.lat.length; i++) {
+        let lat = parseFloat(web3.utils.toAscii(res.lat[i]));
+        let lng = parseFloat(web3.utils.toAscii(res.lng[i]));
+        let positionLatLng = new google.maps.LatLng(lat, lng);
+        plotPosition(positionLatLng, web3.eth.defaultAccount);
+      }
+    })
 }
 
 function plotPosition(positionLatLng, defaultAccount) {
